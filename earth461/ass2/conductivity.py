@@ -1,6 +1,7 @@
 ## conductivity.py #############################################################
 ## conductivity of a saturated sand based on various factors ###################
 ################################################################################
+from plotting import *
 
 def getClayConductivity(Sw, n, TDS, phi, m, a, P, surfaceComponent):
 	output = Sw**(n-1)
@@ -13,11 +14,6 @@ def getConductivity(a, phi, m, TDS, P, Sw = "Null", n = "Null"):
 	if((Sw != "Null")and(n != "Null")):
 		output *= (Sw**(n))
 	output /= (P*10000*a)
-	return output
-	
-def getTDS(a, phi, m, conductivity, P):
-	output = conductivity*(P*(a*10000))
-	output /= (phi**m)
 	return output
 
 def adjustResistivityForTemperature(T1, T2, resistivity):

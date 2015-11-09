@@ -43,9 +43,9 @@ def graphLogLog(graphTitle, yLabel, xLabel, xMin, xMax, yMin, yMax, saveToFile, 
 	ax1.grid(b=True, which='both', color='c', linestyle='-')	
 
 	ax1.legend(loc='upper left')	
-	ax1.set_aspect(1)
+	##ax1.set_aspect(1)
 	ax1.set_title(graphTitle)
-	plt.draw()
+	##plt.draw()
 	
 	
 	if(saveToFile == True):
@@ -61,8 +61,6 @@ def graphLogLog(graphTitle, yLabel, xLabel, xMin, xMax, yMin, yMax, saveToFile, 
 
 def graphLin(graphTitle, fileName, yLabel, xLabel, xMin, xMax, yMin, yMax, saveToFile, *datasets):
 	fig, (ax1) = plt.subplots(1)
-	#ax1.set_xscale("log")
-	#ax1.set_yscale("log")
 	ax1.set_adjustable("datalim")
 	
 	ax1.set_xlim(xMin, xMax)
@@ -82,12 +80,7 @@ def graphLin(graphTitle, fileName, yLabel, xLabel, xMin, xMax, yMin, yMax, saveT
 	
 	
 	if(saveToFile == True):
-		#fileName = graphTitle + '.png'
-		#fileName = fileName.rstrip('\n')
-		## dont know why, but this still doesnt fix the garbage character
-		## problem. Annoying
 		plt.savefig(fileName)
-		## oddly this wont playball when show() is called first
 	else:
 		plt.show()
 
@@ -113,7 +106,7 @@ if(__name__=="__main__"):
 	linData = dataSet(xRange, lin, "linear values", "b")		
 	
 	
-	graphLin("Testing linPlottttt", "y", "x", 0, 100, 0, 1000, False, lnData, squareData, linData)
+	graphLin("Testing linPlottttt", "foo.png", "y", "x", 0, 100, 0, 1000, False, lnData, squareData, linData)
 	
 	
 	

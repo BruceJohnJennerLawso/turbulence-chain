@@ -20,12 +20,16 @@ def conductivityByTableDepth(tableDepth, coilSpacing, cumulativeResponseFunction
 if(__name__ == "__main__"):
 	waterTableDepth = np.arange(0, 10, 0.01)
 	apparentConduct = []
+	traditionalConduct = []
 	for tableDepth in waterTableDepth:
 		apparentConduct.append(conductivityByTableDepth(tableDepth, 3.66, heightAdjustedCumulativeResponseVD, 1.0))
+		traditionalConduct.append(conductivityByTableDepth(tableDepth, 3.66, cumulativeResponseVD, 1.0))		
 	dataset = dataSet(waterTableDepth, apparentConduct, "VD EM 31, spacing = 3.66, height = 1.0 m", "r")
+
+	datasetB = dataSet(waterTableDepth, traditionalConduct, "VD EM 31, spacing = 3.66, height = 0 m", "b")	
 		
 	
 	
-	graphLin("Apparent Conductivity by Vadose Zone Depth", "6c.png", "Apparent Conductivity (mS/m)", "Vadose Zone Depth (m)", 0, 10, 0, 30, True, dataset)
+	graphLin("Apparent Conductivity by Vadose Zone Depth", "6c.png", "Apparent Conductivity (mS/m)", "Vadose Zone Depth (m)", 0, 10, 0, 30, True, dataset, datasetB)
 	
 	

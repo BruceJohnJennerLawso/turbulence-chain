@@ -7,7 +7,8 @@ from plotting import *
 def omega(f):
 	return (2*(math.pi*f))
 	
-## phi functions, would work if we could integrate to infinity	
+## phi functions, would work if we could integrate to infinity #################
+################################################################################
 	
 def responseVD(z):
 	output = 4*z
@@ -30,6 +31,21 @@ def responseVCX(z):
 	output -= ((2*z)/(((4*(z**2))+1)**0.5))
 	output -= (2*z)/(((4*(z**2))+1)**(3.0/2.0))
 	return output
+	
+	
+def responseEffectiveVD(z):
+	output = z/(math.sqrt((4*(z**2))+1600))
+	output += z/(math.sqrt((4*(z**2))+400))
+	return output	
+	
+def responseEffectiveVDHD(z):
+	output = 4
+	output -= (8*z)/(((4*(z**2))+1)**0.5)
+	output -= (4*z)/(((4*(z**2))+1)**1.5)
+	return output
+	
+## cumulative response functions, cause we cant integrate to infinity ##########
+################################################################################	
 	
 def cumulativeResponseVD(z, h=0):
 	output = 1
@@ -92,13 +108,13 @@ def apparentConductivity(coilSpacing, cumulativeResponseFunction, layers, h=0):
 	
 	##print layers
 	
-	print "%d layers" % len(layers)
-	for i in range(0, len(layers)):
-		print "layer %d, conductivity %f mS/m, depth %f m" % (i, layers[i].getConductivity(), layers[i].getDepth())
+	##print "%d layers" % len(layers)
+	##for i in range(0, len(layers)):
+		##print "layer %d, conductivity %f mS/m, depth %f m" % (i, layers[i].getConductivity(), layers[i].getDepth())
 
 	
 	for i in range(0, len(layers)):
-		print "last layer index %d" % (len(layers) -1)
+		##print "last layer index %d" % (len(layers) -1)
 		layerBottom += layers[i].getDepth()		
 		conductivity = layers[i].getConductivity()
 		if(h != 0):

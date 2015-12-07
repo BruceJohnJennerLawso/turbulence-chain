@@ -67,7 +67,7 @@ def reflectionCoeffcicient(kappa1, kappa2, mu1=False, mu2=False):
 		return output
 
 
-class layer:
+class Layer:
 	def __init__(self,  depth, velocity):
 		self.Depth = depth
 		self.Velocity = velocity
@@ -78,10 +78,29 @@ class layer:
 	def getVelocity(self):
 		return self.Velocity	
 		
-	def getTi():
+	def getTi(self):
 		output = (2*self.Depth)/self.Velocity
 		return output	
+		
+	def printLayer(self):
+		print "Layer Depth: %f m, Layer Velocity: %f m/ns" % (self.Depth, self.Velocity)
+		
+class Reflection:
+	def __init__(self, vNMO, t0):
+		self.t0 = t0
+		self.vNMO = vNMO
 
+
+def getLayerVelocity(vNMOn, t0_n, vNMOnPlus1, t0_nPlus1):
+	output = ((vNMOn**2)*t0_n)
+	output -= ((vNMOnPlus1**2)*t0_nPlus1)
+	output /= (t0_n - t0_nPlus1)
+	return math.sqrt(output)
+	
+def getLayerDepth(vn, t0_n, t0_nPlus1):
+	output = t0_n - t0_nPlus1
+	output *= (0.5*vn)
+	return output
 
 def getNMOVelocity(*layers):
 	output = 0.0
@@ -103,6 +122,7 @@ def getTxSquaredNMO(x, i, *layers):
 	output = (t0**2) + ((x**2)/(vNMO**2))
 	return output
 	
+
 	
 
 if(__name__ == "__main__"):
